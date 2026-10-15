@@ -1056,3 +1056,391 @@ body.is-locked { overflow: hidden; }
   .demo__bar { animation: none !important; opacity: 1; transform: none; }
   .demo__status .demo__spinner { animation: none !important; }
 }
+
+/* =====================================================
+   Mascota asistente (Kai)
+   ===================================================== */
+.mascot {
+  position: fixed;
+  right: 1.4rem;
+  bottom: 1.4rem;
+  z-index: 90;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.9rem;
+  max-width: min(440px, calc(100vw - 2rem));
+  transition: opacity 0.3s var(--ease), transform 0.45s var(--ease);
+}
+.mascot.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(24px);
+}
+
+.mascot__figure {
+  position: relative;
+  flex-shrink: 0;
+  width: 152px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  transition: width 0.45s var(--ease), transform 0.3s var(--ease);
+}
+.mascot__figure:hover { transform: translateY(-4px); }
+.mascot__figure:focus-visible {
+  outline: 3px solid var(--cyan-500);
+  outline-offset: 4px;
+  border-radius: 50%;
+}
+.mascot.is-compact .mascot__figure { width: 96px; }
+
+.mascot__figure::after {
+  content: "";
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--green-500);
+  border: 3px solid var(--surface);
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.18);
+}
+
+.mascot__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid var(--surface);
+  background: radial-gradient(130% 130% at 32% 22%, var(--cyan-400) 0%, var(--violet-500) 100%);
+  box-shadow: 0 0 0 3px var(--cyan-500), 0 14px 26px rgba(18, 41, 77, 0.28);
+  animation: mascot-bob 3.4s ease-in-out infinite;
+  transform-origin: 50% 50%;
+}
+.mascot__img.is-waving { animation: mascot-wave 0.55s var(--ease) 2; }
+
+.mascot__bubble {
+  position: relative;
+  max-width: 262px;
+  background: var(--surface);
+  border: 1px solid var(--slate-200);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  padding: 0.9rem 1rem;
+  opacity: 0;
+  transform: translateY(10px) scale(0.94);
+  transform-origin: bottom right;
+  pointer-events: none;
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+}
+.mascot__bubble.is-visible {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+.mascot__bubble::after {
+  content: "";
+  position: absolute;
+  right: -8px;
+  bottom: 24px;
+  width: 16px;
+  height: 16px;
+  background: var(--surface);
+  border-top: 1px solid var(--slate-200);
+  border-right: 1px solid var(--slate-200);
+  transform: rotate(45deg);
+}
+.mascot__bubble-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin-bottom: 0.5rem;
+}
+.mascot__tag {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: linear-gradient(135deg, var(--cyan-500), var(--violet-500));
+  border-radius: 8px;
+  padding: 0.22rem 0.5rem;
+}
+.mascot__close {
+  border: 0;
+  background: transparent;
+  color: var(--slate-400);
+  cursor: pointer;
+  line-height: 0;
+  padding: 4px;
+  border-radius: 8px;
+  transition: color 0.2s var(--ease), background 0.2s var(--ease);
+}
+.mascot__close:hover { color: var(--blue-800); background: var(--bg); }
+.mascot__close svg { width: 15px; height: 15px; }
+.mascot__text {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--slate-800);
+  min-height: 2.7em;
+}
+.mascot__dots {
+  display: none;
+  gap: 3px;
+  margin-top: 0.35rem;
+}
+.mascot__dots.is-active { display: inline-flex; }
+.mascot__dots i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--slate-400);
+  animation: blink 1.2s infinite;
+}
+.mascot__dots i:nth-child(2) { animation-delay: 0.2s; }
+.mascot__dots i:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes mascot-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+@keyframes mascot-wave {
+  0%, 100% { transform: rotate(0deg); }
+  30% { transform: rotate(-9deg); }
+  70% { transform: rotate(8deg); }
+}
+
+@media (max-width: 720px) {
+  .mascot { right: 0.8rem; bottom: 0.8rem; gap: 0.5rem; }
+  .mascot__figure { width: 112px; }
+  .mascot.is-compact .mascot__figure { width: 78px; }
+  .mascot__bubble { max-width: 200px; padding: 0.8rem 0.85rem; }
+  .mascot__text { font-size: 0.84rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mascot__img,
+  .mascot__img.is-waving { animation: none !important; }
+}
+
+/* =====================================================
+   Asistente Kai v2 (selección de servicios + texto libre)
+   ===================================================== */
+.mascot { max-width: min(560px, calc(100vw - 2rem)); }
+
+.mascot__panel {
+  width: 320px;
+  max-width: calc(100vw - 2rem);
+  background: var(--surface);
+  border: 1px solid var(--slate-200);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  padding: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  transform-origin: bottom right;
+  animation: mascot-pop 0.28s var(--ease);
+}
+.mascot.is-collapsed .mascot__panel { display: none; }
+
+.mascot__panel-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.mascot__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.mascot__tag-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green-500);
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.25);
+}
+
+.mascot__log {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 250px;
+  overflow-y: auto;
+  padding-right: 2px;
+  scrollbar-width: thin;
+}
+.mascot__msg {
+  max-width: 90%;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  padding: 0.55rem 0.72rem;
+  border-radius: 12px;
+  white-space: pre-line;
+  animation: mascot-msg 0.25s var(--ease);
+}
+.mascot__msg--kai {
+  align-self: flex-start;
+  background: var(--bg);
+  color: var(--slate-800);
+  border-bottom-left-radius: 4px;
+}
+.mascot__msg--user {
+  align-self: flex-end;
+  background: linear-gradient(135deg, var(--cyan-500), var(--violet-500));
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+.mascot__msg--kai strong { color: var(--blue-800); font-weight: 600; }
+
+.mascot__typing { display: inline-flex; gap: 3px; align-items: center; }
+.mascot__typing i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--slate-400);
+  animation: blink 1.2s infinite;
+}
+.mascot__typing i:nth-child(2) { animation-delay: 0.2s; }
+.mascot__typing i:nth-child(3) { animation-delay: 0.4s; }
+
+.mascot__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.mascot__chip {
+  border: 1px solid var(--slate-200);
+  background: var(--surface);
+  color: var(--blue-800);
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.4rem 0.65rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: border-color 0.2s var(--ease), background 0.2s var(--ease), transform 0.2s var(--ease);
+}
+.mascot__chip:hover {
+  border-color: var(--cyan-400);
+  background: rgba(34, 211, 238, 0.08);
+  transform: translateY(-1px);
+}
+.mascot__chip.is-empty {
+  color: var(--slate-500);
+  border-style: dashed;
+  cursor: default;
+}
+.mascot__chip.is-empty:hover {
+  transform: none;
+  background: var(--surface);
+  border-color: var(--slate-200);
+}
+
+.mascot__form {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+.mascot__input {
+  flex: 1;
+  min-width: 0;
+  font: inherit;
+  font-size: 0.86rem;
+  color: var(--slate-800);
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--slate-200);
+  border-radius: 999px;
+  background: var(--bg);
+  outline: none;
+  transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease), background 0.2s var(--ease);
+}
+.mascot__input:focus {
+  border-color: var(--cyan-500);
+  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.18);
+  background: var(--surface);
+}
+.mascot__send {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border: 0;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--cyan-500), var(--violet-500));
+  color: #fff;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: transform 0.2s var(--ease), filter 0.2s var(--ease);
+}
+.mascot__send:hover { transform: translateY(-1px); filter: brightness(1.05); }
+.mascot__send svg { width: 17px; height: 17px; }
+
+.mascot__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.55rem;
+}
+.mascot__action {
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.4rem 0.7rem;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--cyan-500), var(--violet-500));
+  color: #fff;
+  transition: transform 0.2s var(--ease), filter 0.2s var(--ease);
+}
+.mascot__action:hover { transform: translateY(-1px); filter: brightness(1.05); }
+.mascot__action--ghost {
+  background: transparent;
+  color: var(--blue-800);
+  border: 1px solid var(--slate-200);
+}
+
+.mascot__pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.45);
+  animation: mascot-pulse 2.4s var(--ease) infinite;
+  pointer-events: none;
+}
+
+.card.is-highlight {
+  box-shadow: 0 0 0 3px var(--cyan-500), var(--shadow-lg);
+  transform: translateY(-4px);
+  transition: box-shadow 0.3s var(--ease), transform 0.3s var(--ease);
+}
+
+@keyframes mascot-pop {
+  from { opacity: 0; transform: translateY(12px) scale(0.96); }
+}
+@keyframes mascot-msg {
+  from { opacity: 0; transform: translateY(6px); }
+}
+@keyframes mascot-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.45); }
+  70%, 100% { box-shadow: 0 0 0 14px rgba(34, 211, 238, 0); }
+}
+
+@media (max-width: 720px) {
+  .mascot__panel { width: min(88vw, 320px); }
+  .mascot__log { max-height: 190px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mascot__pulse { animation: none !important; }
+  .mascot__msg,
+  .mascot__panel { animation: none !important; }
+}

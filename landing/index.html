@@ -385,6 +385,33 @@
     </div>
   </footer>
 
+  <div class="mascot" id="mascot">
+    <div class="mascot__panel" id="mascotPanel" role="dialog" aria-label="Asistente de PramTech">
+      <div class="mascot__panel-top">
+        <span class="mascot__tag">
+          <span class="mascot__tag-dot" aria-hidden="true"></span>
+          Bock · Asistente
+        </span>
+        <button type="button" class="mascot__close" id="mascotClose" aria-label="Cerrar asistente">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <div class="mascot__log" id="mascotLog" role="log" aria-live="polite" aria-atomic="false"></div>
+      <div class="mascot__chips" id="mascotChips"></div>
+      <form class="mascot__form" id="mascotForm" autocomplete="off">
+        <input class="mascot__input" id="mascotInput" type="text" placeholder="Escribe lo que necesitas…" aria-label="Escribe lo que necesitas" />
+        <button type="submit" class="mascot__send" id="mascotSend" aria-label="Enviar">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l15-8-6 8 6 8-15-8Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        </button>
+      </form>
+    </div>
+
+    <button type="button" class="mascot__figure" id="mascotFigure" aria-label="Abrir asistente de PramTech">
+      <span class="mascot__pulse" aria-hidden="true"></span>
+      <img class="mascot__img" id="mascotImg" src="assets/mascot/akita-black.png" alt="Bock, el perro asistente de PramTech" width="200" height="200" />
+    </button>
+  </div>
+
   <div class="modal" id="demoModal" aria-hidden="true">
     <div class="modal__overlay" data-close></div>
     <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="demoModalTitle">

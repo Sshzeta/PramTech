@@ -493,4 +493,245 @@
       if (event.key === "Escape") closeDemo();
     });
   }
+
+  /* =====================================================
+     Asistente Kai: catálogo de servicios + texto libre
+     ===================================================== */
+  var mascot = document.getElementById("mascot");
+  if (mascot) {
+    var mascotLog = document.getElementById("mascotLog");
+    var mascotChips = document.getElementById("mascotChips");
+    var mascotForm = document.getElementById("mascotForm");
+    var mascotInput = document.getElementById("mascotInput");
+    var mascotFigure = document.getElementById("mascotFigure");
+    var mascotClose = document.getElementById("mascotClose");
+    var mascotImg = document.getElementById("mascotImg");
+
+    var mascotReduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (mascotImg) {
+      mascotImg.addEventListener("error", function () {
+        if (mascotImg.getAttribute("data-fallback")) return;
+        mascotImg.setAttribute("data-fallback", "1");
+        mascotImg.src = "assets/mascot/akita.svg";
+      });
+    }
+
+    var MASCOT_SERVICES = [
+      {
+        key: "inventario",
+        label: "Inventario y stock",
+        emoji: "📦",
+        title: "Control de Inventario Inteligente",
+        detail: "Ves tu stock y tu bodega en un solo panel, y la IA te avisa qué pedir antes de que se acabe. Nunca más una venta perdida por falta de producto.",
+        keywords: ["inventario", "stock", "producto", "productos", "bodega", "almacen", "existencia", "existencias", "reabastecer", "conteo"]
+      },
+      {
+        key: "ventas",
+        label: "Ventas online",
+        emoji: "🛒",
+        title: "Automatización de Ventas Online",
+        detail: "Conecta tus canales y deja que pedidos, recordatorios y respuestas repetitivas se hagan solos. Tú te enfocas en vender, no en copiar y pegar.",
+        keywords: ["venta", "ventas", "vender", "pedido", "pedidos", "cliente", "clientes", "tienda", "online", "whatsapp", "instagram", "facebook", "mensaje", "mensajes", "recordatorio", "cobrar", "pago", "pagos"]
+      },
+      {
+        key: "asistente",
+        label: "Asistente IA",
+        emoji: "🤖",
+        title: "Asistente IA para tu Pyme",
+        detail: "Pregúntale por tus productos, tus ventas o tu stock en lenguaje normal. Como tener un ayudante siempre disponible que conoce tu negocio.",
+        keywords: ["asistente", "ia", "inteligencia", "chat", "chatbot", "bot", "ayudante", "preguntar", "consulta", "consultas", "pregunta"]
+      },
+      {
+        key: "reportes",
+        label: "Reportes",
+        emoji: "📊",
+        title: "Reportes que se entienden",
+        detail: "Gráficos claros que te dicen cómo va tu negocio y qué decisión tomar. Información útil en segundos, sin tablas complejas.",
+        keywords: ["reporte", "reportes", "grafico", "graficos", "informe", "informes", "estadistica", "estadisticas", "datos", "resumen", "indicador", "indicadores", "balance", "metricas"]
+      }
+    ];
+
+    function mascotScrollLog() {
+      if (mascotLog) mascotLog.scrollTop = mascotLog.scrollHeight;
+    }
+
+    function mascotAddMessage(role, text) {
+      if (!mascotLog) return null;
+      var el = document.createElement("div");
+      el.className = "mascot__msg mascot__msg--" + role;
+      el.textContent = text;
+      mascotLog.appendChild(el);
+      mascotScrollLog();
+      return el;
+    }
+
+    function mascotKai(text, actions) {
+      if (!mascotLog) return null;
+      var el = document.createElement("div");
+      el.className = "mascot__msg mascot__msg--kai";
+      var span = document.createElement("span");
+      el.appendChild(span);
+      mascotLog.appendChild(el);
+
+      function reveal() {
+        span.textContent = text;
+        if (actions && actions.length) {
+          var wrap = document.createElement("div");
+          wrap.className = "mascot__actions";
+          actions.forEach(function (action) {
+            var btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = "mascot__action" + (action.ghost ? " mascot__action--ghost" : "");
+            btn.textContent = action.label;
+            btn.addEventListener("click", action.onClick);
+            wrap.appendChild(btn);
+          });
+          el.appendChild(wrap);
+        }
+        mascotScrollLog();
+      }
+
+      if (mascotReduce || !text) {
+        reveal();
+        return el;
+      }
+      var typing = document.createElement("span");
+      typing.className = "mascot__typing";
+      typing.innerHTML = "<i></i><i></i><i></i>";
+      span.appendChild(typing);
+      mascotScrollLog();
+      window.setTimeout(reveal, 420);
+      return el;
+    }
+
+    function mascotRenderChips(filter) {
+      if (!mascotChips) return;
+      var f = (filter || "").trim().toLowerCase();
+      mascotChips.innerHTML = "";
+      var list = MASCOT_SERVICES.filter(function (svc) {
+        if (!f) return true;
+        var haystack = (svc.label + " " + svc.title + " " + svc.keywords.join(" ")).toLowerCase();
+        return haystack.indexOf(f) !== -1;
+      });
+      if (!list.length) {
+        var empty = document.createElement("span");
+        empty.className = "mascot__chip is-empty";
+        empty.textContent = "No está en el portafolio → lo vamos a sugerir";
+        mascotChips.appendChild(empty);
+        return;
+      }
+      list.forEach(function (svc) {
+        var chip = document.createElement("button");
+        chip.type = "button";
+        chip.className = "mascot__chip";
+        chip.textContent = svc.emoji + " " + svc.label;
+        chip.addEventListener("click", function () {
+          mascotAddMessage("user", svc.label);
+          mascotShowService(svc);
+        });
+        mascotChips.appendChild(chip);
+      });
+    }
+
+    function mascotGoToCard(key) {
+      var card = document.querySelector('.card[data-demo="' + key + '"]');
+      if (!card) return;
+      card.scrollIntoView({ behavior: mascotReduce ? "auto" : "smooth", block: "center" });
+      card.classList.add("is-highlight");
+      window.setTimeout(function () { card.classList.remove("is-highlight"); }, 1800);
+    }
+
+    function mascotShowService(svc) {
+      mascotRenderChips("");
+      mascotKai(svc.emoji + " " + svc.title + "\n" + svc.detail, [
+        { label: "Ir a la tarjeta →", onClick: function () { mascotGoToCard(svc.key); } },
+        { label: "Ver demo", ghost: true, onClick: function () {
+            mascot.classList.add("is-collapsed");
+            if (typeof openDemo === "function") openDemo(svc.key);
+          } }
+      ]);
+    }
+
+    function mascotFindService(text) {
+      var t = (text || "").toLowerCase();
+      var best = null;
+      var bestScore = 0;
+      MASCOT_SERVICES.forEach(function (svc) {
+        var score = 0;
+        if (t.indexOf(svc.label.toLowerCase()) !== -1) score += 3;
+        if (t.indexOf(svc.title.toLowerCase()) !== -1) score += 3;
+        svc.keywords.forEach(function (word) {
+          if (word.length > 2 && t.indexOf(word) !== -1) score += 1;
+        });
+        if (score > bestScore) { bestScore = score; best = svc; }
+      });
+      return bestScore > 0 ? best : null;
+    }
+
+    function mascotHandleText(text) {
+      var value = (text || "").trim();
+      if (!value) return;
+      mascotAddMessage("user", value);
+      var svc = mascotFindService(value);
+      if (svc) {
+        mascotShowService(svc);
+      } else {
+        mascotKai(
+          "Lo vamos a sugerir 🙌. Esa solución todavía no está en nuestro portafolio, pero la anotamos y la evaluamos para ti. ¿Quieres contarnos un poco más o prefieres que un humano te contacte?",
+          [
+            { label: "Contar más", ghost: true, onClick: function () { if (mascotInput) mascotInput.focus(); } },
+            { label: "Ir a contacto", onClick: function () {
+                var target = document.getElementById("contacto");
+                if (target) target.scrollIntoView({ behavior: mascotReduce ? "auto" : "smooth", block: "start" });
+              } }
+          ]
+        );
+      }
+      mascotRenderChips("");
+      if (mascotInput) mascotInput.value = "";
+    }
+
+    function mascotGreet() {
+      mascotKai("¡Hola! Soy Bock 🐾, el asistente de PramTech. ¿Qué necesitas para tu negocio? Elige un servicio o escríbeme lo que buscas.", null);
+    }
+
+    if (mascotInput) {
+      mascotInput.addEventListener("input", function () {
+        mascotRenderChips(mascotInput.value);
+      });
+    }
+    if (mascotForm) {
+      mascotForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        mascotHandleText(mascotInput ? mascotInput.value : "");
+      });
+    }
+    if (mascotFigure) {
+      mascotFigure.addEventListener("click", function () {
+        mascot.classList.toggle("is-collapsed");
+      });
+    }
+    if (mascotClose) {
+      mascotClose.addEventListener("click", function (event) {
+        event.stopPropagation();
+        mascot.classList.add("is-collapsed");
+      });
+    }
+
+    var mascotTicking = false;
+    function mascotOnScroll() {
+      if (mascotTicking) return;
+      mascotTicking = true;
+      requestAnimationFrame(function () {
+        mascot.classList.toggle("is-compact", window.scrollY > 320);
+        mascotTicking = false;
+      });
+    }
+    window.addEventListener("scroll", mascotOnScroll, { passive: true });
+
+    mascotRenderChips("");
+    mascot.classList.toggle("is-compact", window.scrollY > 320);
+    window.setTimeout(mascotGreet, 900);
+  }
 })();
