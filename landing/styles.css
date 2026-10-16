@@ -187,7 +187,7 @@ img { max-width: 100%; display: block; }
   transition: color 0.2s var(--ease);
 }
 .nav__links a:not(.btn):hover { color: var(--blue-700); }
-.nav__cta { color: #ffffff; }
+.nav__links a.nav__cta { color: #ffffff; }
 
 .nav__toggle {
   display: none;
