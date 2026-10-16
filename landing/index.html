@@ -135,7 +135,7 @@
         </div>
 
         <div class="section__cta reveal">
-          <a class="btn btn--primary" href="#contacto">Cuéntanos tu caso y te decimos qué te resuelve</a>
+          <a class="btn btn--primary" href="#contacto">Cuéntanos tu caso y te ayudamos</a>
         </div>
       </div>
     </section>
@@ -339,7 +339,7 @@
 
           <label class="field">
             <span>¿Qué te gustaría resolver?</span>
-            <select name="interes" required>
+            <select name="interes" id="interes" required>
               <option value="" disabled selected>Selecciona una opción</option>
               <option>Inventario</option>
               <option>Ventas online</option>
@@ -347,6 +347,12 @@
             </select>
           </label>
 
+          <div class="form__row" id="descripcionWrapper" hidden>
+            <label class="field">
+              <span>Describe lo que necesitas</span>
+              <textarea name="descripcion" id="descripcion" rows="4" placeholder="Cuéntanos un poco sobre tu situación o lo que deseas resolver"></textarea>
+            </label>
+          </div>
           <button class="btn btn--primary btn--block" type="submit">Quiero mi diagnóstico gratis</button>
           <p class="form__legal">Tus datos son confidenciales. Nunca los compartimos.</p>
           <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
@@ -423,5 +429,6 @@
   </div>
 
   <script src="script.js"></script>
+  <script src="form-handle.js"></script>
 </body>
 </html>
