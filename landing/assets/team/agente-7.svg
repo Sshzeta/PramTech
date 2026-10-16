@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Agente IA">
+  <defs>
+    <linearGradient id="abg7" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#12294d"/>
+      <stop offset="1" stop-color="#24507f"/>
+    </linearGradient>
+    <radialGradient id="aglow7" cx="50%" cy="42%" r="60%">
+      <stop offset="0" stop-color="#2dd4bf" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#2dd4bf" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="agrid7" width="26" height="26" patternUnits="userSpaceOnUse">
+      <path d="M26 0H0V26" fill="none" stroke="#ffffff" stroke-opacity="0.06" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="400" height="400" fill="url(#abg7)"/>
+  <rect width="400" height="400" fill="url(#agrid7)"/>
+  <rect width="400" height="400" fill="url(#aglow7)"/>
+  <g fill="none" stroke="#2dd4bf" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.9">
+    <path d="M292 168a96 96 0 0 0-160-44"/>
+    <path d="M108 232a96 96 0 0 0 160 44"/>
+    <path d="M132 84v44h44"/>
+    <path d="M268 316v-44h-44"/>
+  </g>
+  <circle cx="200" cy="200" r="14" fill="#2dd4bf"/>
+</svg>

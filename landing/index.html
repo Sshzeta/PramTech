@@ -251,9 +251,14 @@
 
     <section class="section section--tinted" id="nosotros">
       <div class="container">
+        <div class="tabs" role="tablist" aria-label="Sobre PramTech">
+          <button class="tab is-active" id="tabAbout" type="button" role="tab" aria-selected="true" aria-controls="panelAbout" tabindex="0">Quiénes somos</button>
+          <button class="tab" id="tabTeam" type="button" role="tab" aria-selected="false" aria-controls="panelTeam" tabindex="-1">Nuestro equipo</button>
+        </div>
+
+        <div class="tabpanel" id="panelAbout" role="tabpanel" aria-labelledby="tabAbout" tabindex="0">
         <div class="about">
           <div class="about__copy reveal">
-            <span class="eyebrow">Quiénes somos</span>
             <h2>Tecnología con rostro humano</h2>
             <p>PramTech nació de una idea simple: las pymes merecen la misma tecnología que las grandes empresas, pero sin la complejidad ni los costos que las dejan fuera. Somos un equipo que traduce lo técnico a lo cotidiano, que escucha antes de recomendar y que se queda a tu lado durante todo el proceso.</p>
             <p>Creemos en la transparencia, en los resultados medibles y en que la mejor tecnología es la que usas sin pensarlo.</p>
@@ -297,6 +302,107 @@
             <strong class="stat__num" data-count="98" data-suffix="%">0</strong>
             <span>de clientes que siguen con nosotros</span>
           </div>
+        </div>
+        </div>
+
+        <div class="tabpanel" id="panelTeam" role="tabpanel" aria-labelledby="tabTeam" tabindex="0" hidden>
+        <div class="team" id="equipo">
+          <div class="team__head reveal">
+            <h3 class="team__title">Las personas detrás de PramTech</h3>
+            <p class="team__lead">Un equipo senior, directo y cercano. Sin intermediarios: hablas con quien diseña y resuelve.</p>
+          </div>
+
+          <div class="team__grid">
+            <article class="member reveal">
+              <div class="member__media">
+                <span class="member__index">01</span>
+                <img src="assets/team/director.jpeg" alt="Antonio Viluñir T., Fundador y Director de PramTech" width="480" height="600" loading="lazy" />
+              </div>
+              <div class="member__body">
+                <h4 class="member__name">Antonio Viluñir T.</h4>
+                <p class="member__role">Fundador y Director</p>
+                <p class="member__bio">Define la visión y acompaña cada proyecto de principio a fin, traduciendo la estrategia del negocio en soluciones concretas.</p>
+              </div>
+            </article>
+
+            <article class="member reveal">
+              <div class="member__media">
+                <span class="member__index">02</span>
+                <img src="assets/team/gerente-de-servicio.jpeg" alt="Bock Yang, Gerente de Servicio de PramTech" width="480" height="600" loading="lazy" />
+              </div>
+              <div class="member__body">
+                <h4 class="member__name">Bock Yang</h4>
+                <p class="member__role">Gerente de Servicio</p>
+                <p class="member__bio">Coordina la implementación y el soporte, asegurando que cada solución funcione en el día a día y que nada quede al azar.</p>
+              </div>
+            </article>
+
+            <article class="member reveal">
+              <div class="member__media">
+                <span class="member__index">03</span>
+                <img src="assets/team/ingeniero-especialista.png" alt="Franco Armijo M., Ingeniero Especialista de PramTech" width="480" height="600" loading="lazy" />
+              </div>
+              <div class="member__body">
+                <h4 class="member__name">Franco Armijo M.</h4>
+                <p class="member__role">Ingeniero Especialista</p>
+                <p class="member__bio">Diseña las integraciones, automatizaciones e IA que hacen que todo trabaje conectado y sin fricción.</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="agents">
+            <div class="agents__head reveal">
+              <span class="eyebrow">Agentes IA</span>
+              <h4 class="agents__title">Nuestro equipo digital, disponible 24/7</h4>
+              <p class="agents__lead">Agentes de inteligencia artificial entrenados para tareas concretas, orquestados por un coordinador que reparte el trabajo.</p>
+            </div>
+
+            <div class="agents__chart">
+              <article class="agent agent--lead reveal">
+                <img class="agent__img" src="assets/team/agente-1.svg" alt="Agente IA Coordinador" width="200" height="200" loading="lazy" />
+                <div class="agent__info">
+                  <h5 class="agent__name">A-Coordinador</h5>
+                  <p class="agent__desc">Orquesta al resto de agentes y deriva cada tarea al especialista adecuado.</p>
+                </div>
+              </article>
+
+              <div class="agents__connector" aria-hidden="true"></div>
+
+              <div class="agents__grid">
+                <article class="agent reveal">
+                  <img class="agent__img" src="assets/team/agente-2.svg" alt="Agente IA de Desarrollo TI" width="200" height="200" loading="lazy" />
+                  <h5 class="agent__name">A-Desarrollo TI</h5>
+                  <p class="agent__desc">Escribe, revisa y documenta código para tus sistemas.</p>
+                </article>
+                <article class="agent reveal">
+                  <img class="agent__img" src="assets/team/agente-3.svg" alt="Agente IA de Operaciones CRM" width="200" height="200" loading="lazy" />
+                  <h5 class="agent__name">A-Operaciones CRM</h5>
+                  <p class="agent__desc">Mantiene tu CRM ordenado y tus clientes al día.</p>
+                </article>
+                <article class="agent reveal">
+                  <img class="agent__img" src="assets/team/agente-4.svg" alt="Agente IA de Soporte Técnico" width="200" height="200" loading="lazy" />
+                  <h5 class="agent__name">A-Soporte Técnico</h5>
+                  <p class="agent__desc">Resuelve incidencias y guía a tu equipo paso a paso.</p>
+                </article>
+                <article class="agent reveal">
+                  <img class="agent__img" src="assets/team/agente-5.svg" alt="Agente IA de Atención" width="200" height="200" loading="lazy" />
+                  <h5 class="agent__name">A-Atención</h5>
+                  <p class="agent__desc">Responde consultas y agenda diagnósticos al instante.</p>
+                </article>
+                <article class="agent reveal">
+                  <img class="agent__img" src="assets/team/agente-6.svg" alt="Agente IA Analista de Datos" width="200" height="200" loading="lazy" />
+                  <h5 class="agent__name">A-Analista de Datos</h5>
+                  <p class="agent__desc">Ordena la información y detecta oportunidades en tus números.</p>
+                </article>
+                <article class="agent reveal">
+                  <img class="agent__img" src="assets/team/agente-7.svg" alt="Agente IA Automatizador" width="200" height="200" loading="lazy" />
+                  <h5 class="agent__name">A-Automatizador</h5>
+                  <p class="agent__desc">Ejecuta tareas repetitivas y conecta tus herramientas.</p>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
         </div>
       </div>
     </section>
@@ -439,5 +545,6 @@
 
   <script src="script.js"></script>
   <script src="form-handle.js"></script>
+  <script src="tabs.js"></script>
 </body>
 </html>

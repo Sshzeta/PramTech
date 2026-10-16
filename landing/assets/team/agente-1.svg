@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Agente IA">
+  <defs>
+    <linearGradient id="abg1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#12294d"/>
+      <stop offset="1" stop-color="#24507f"/>
+    </linearGradient>
+    <radialGradient id="aglow1" cx="50%" cy="42%" r="60%">
+      <stop offset="0" stop-color="#22b8cf" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#22b8cf" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="agrid1" width="26" height="26" patternUnits="userSpaceOnUse">
+      <path d="M26 0H0V26" fill="none" stroke="#ffffff" stroke-opacity="0.06" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="400" height="400" fill="url(#abg1)"/>
+  <rect width="400" height="400" fill="url(#agrid1)"/>
+  <rect width="400" height="400" fill="url(#aglow1)"/>
+  <g fill="none" stroke="#38d0e4" stroke-width="3" stroke-linecap="round" opacity="0.85">
+    <circle cx="200" cy="200" r="58"/>
+    <path d="M200 86v56M200 258v56M86 200h56M258 200h56"/>
+  </g>
+  <circle cx="200" cy="200" r="18" fill="#38d0e4"/>
+  <g fill="#38d0e4">
+    <circle cx="200" cy="86" r="7"/>
+    <circle cx="200" cy="314" r="7"/>
+    <circle cx="86" cy="200" r="7"/>
+    <circle cx="314" cy="200" r="7"/>
+  </g>
+</svg>

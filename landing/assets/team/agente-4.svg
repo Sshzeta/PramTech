@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Agente IA">
+  <defs>
+    <linearGradient id="abg4" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#12294d"/>
+      <stop offset="1" stop-color="#24507f"/>
+    </linearGradient>
+    <radialGradient id="aglow4" cx="50%" cy="42%" r="60%">
+      <stop offset="0" stop-color="#f2a63b" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#f2a63b" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="agrid4" width="26" height="26" patternUnits="userSpaceOnUse">
+      <path d="M26 0H0V26" fill="none" stroke="#ffffff" stroke-opacity="0.06" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="400" height="400" fill="url(#abg4)"/>
+  <rect width="400" height="400" fill="url(#agrid4)"/>
+  <rect width="400" height="400" fill="url(#aglow4)"/>
+  <g fill="none" stroke="#f2a63b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.9">
+    <path d="M200 96l84 30v62c0 46-34 82-84 96-50-14-84-50-84-96v-62z"/>
+    <path d="m166 202 24 24 46-50"/>
+  </g>
+</svg>

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Agente IA">
+  <defs>
+    <linearGradient id="abg3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#12294d"/>
+      <stop offset="1" stop-color="#24507f"/>
+    </linearGradient>
+    <radialGradient id="aglow3" cx="50%" cy="42%" r="60%">
+      <stop offset="0" stop-color="#34d399" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#34d399" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="agrid3" width="26" height="26" patternUnits="userSpaceOnUse">
+      <path d="M26 0H0V26" fill="none" stroke="#ffffff" stroke-opacity="0.06" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="400" height="400" fill="url(#abg3)"/>
+  <rect width="400" height="400" fill="url(#agrid3)"/>
+  <rect width="400" height="400" fill="url(#aglow3)"/>
+  <g fill="none" stroke="#34d399" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.9">
+    <path d="M200 92 292 148v104L200 308 108 252V148Z"/>
+    <path d="M200 152 244 178v56l-44 26-44-26v-56Z"/>
+  </g>
+  <circle cx="200" cy="206" r="14" fill="#34d399"/>
+</svg>
