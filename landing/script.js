@@ -513,7 +513,7 @@
       mascotImg.addEventListener("error", function () {
         if (mascotImg.getAttribute("data-fallback")) return;
         mascotImg.setAttribute("data-fallback", "1");
-        mascotImg.src = "assets/mascot/akita.svg";
+        mascotImg.src = "assets/mascot/assistant-avatar.png";
       });
     }
 
