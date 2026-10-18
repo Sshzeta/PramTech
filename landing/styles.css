@@ -175,6 +175,71 @@ img { max-width: 100%; display: block; }
 .brand__name span { color: var(--cyan-500); }
 .brand--light .brand__name { color: #fff; }
 
+/* --- Destello de luz en CTA; respiro suave en el logo --- */
+.nav__cta,
+.hero__actions .btn--primary {
+  position: relative;
+  overflow: hidden;
+}
+.nav__cta::after,
+.hero__actions .btn--primary::after {
+  content: "";
+  position: absolute;
+  top: -25%;
+  left: -170%;
+  width: 55%;
+  height: 150%;
+  background: linear-gradient(
+    105deg,
+    rgba(34, 184, 207, 0) 0%,
+    rgba(34, 184, 207, 0.45) 35%,
+    rgba(255, 255, 255, 0.9) 50%,
+    rgba(34, 184, 207, 0.45) 65%,
+    rgba(34, 184, 207, 0) 100%
+  );
+  transform: skewX(-20deg);
+  pointer-events: none;
+  animation: shine-sweep 3.8s ease-in-out infinite;
+}
+@keyframes shine-sweep {
+  0% { left: -170%; }
+  45% { left: 170%; }
+  100% { left: 170%; }
+}
+.nav .brand {
+  animation: brand-glow 5s ease-in-out infinite;
+}
+@keyframes brand-glow {
+  0%, 100% { filter: drop-shadow(0 0 0 rgba(34, 184, 207, 0)); }
+  50% { filter: drop-shadow(0 0 12px rgba(34, 184, 207, 0.65)); }
+}
+.nav .brand__name {
+  animation: brand-darken 5s ease-in-out infinite;
+}
+@keyframes brand-darken {
+  0%, 100% { color: var(--blue-900); text-shadow: 0 0 0 rgba(15, 23, 42, 0); }
+  50% { color: #000000; text-shadow: 0 2px 8px rgba(15, 23, 42, 0.4); }
+}
+.nav .brand__name span {
+  animation: brand-darken-accent 5s ease-in-out infinite;
+}
+@keyframes brand-darken-accent {
+  0%, 100% { color: var(--cyan-500); }
+  50% { color: #0b5e70; text-shadow: 0 2px 8px rgba(11, 94, 112, 0.4); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav__cta::after,
+  .hero__actions .btn--primary::after {
+    animation: none;
+    display: none;
+  }
+  .nav .brand,
+  .nav .brand__name,
+  .nav .brand__name span {
+    animation: none;
+  }
+}
+
 .nav__links {
   display: flex;
   align-items: center;

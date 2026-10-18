@@ -726,5 +726,8 @@
     mascotRenderChips("");
     mascot.classList.toggle("is-compact", window.scrollY > 320);
     window.setTimeout(mascotGreet, 900);
+    window.setTimeout(function () {
+      mascot.classList.add("is-collapsed");
+    }, 5000);
   }
 })();
