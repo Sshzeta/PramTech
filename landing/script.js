@@ -508,6 +508,7 @@
     var mascotImg = document.getElementById("mascotImg");
 
     var mascotReduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var mascotNotes = [];
 
     if (mascotImg) {
       mascotImg.addEventListener("error", function () {
@@ -669,26 +670,44 @@
       return bestScore > 0 ? best : null;
     }
 
+    function mascotSyncContactForm(reveal) {
+      var area = document.getElementById("descripcion");
+      var wrap = document.getElementById("descripcionWrapper");
+      if (!area || !mascotNotes.length) return;
+      area.value = mascotNotes.join("\n\n");
+      if (reveal) {
+        if (wrap) wrap.hidden = false;
+        area.focus({ preventScroll: true });
+      }
+    }
+
+    function mascotGoToContact() {
+      mascotSyncContactForm(true);
+      mascot.classList.add("is-collapsed");
+      var target = document.getElementById("contacto");
+      if (target) target.scrollIntoView({ behavior: mascotReduce ? "auto" : "smooth", block: "start" });
+    }
+
     function mascotHandleText(text) {
       var value = (text || "").trim();
       if (!value) return;
       mascotAddMessage("user", value);
+      mascotNotes.push(value);
+      mascotSyncContactForm(false);
       var svc = mascotFindService(value);
       if (svc) {
-        mascotShowService(svc);
+        mascotKai(svc.emoji + " " + svc.title + "\n" + svc.detail, [
+          { label: "Ir a contacto", onClick: mascotGoToContact }
+        ]);
       } else {
         mascotKai(
           "Lo vamos a sugerir 🙌. Esa solución todavía no está en nuestro portafolio, pero la anotamos y la evaluamos para ti. ¿Quieres contarnos un poco más o prefieres que un humano te contacte?",
           [
-            { label: "Contar más", ghost: true, onClick: function () { if (mascotInput) mascotInput.focus(); } },
-            { label: "Ir a contacto", onClick: function () {
-                var target = document.getElementById("contacto");
-                if (target) target.scrollIntoView({ behavior: mascotReduce ? "auto" : "smooth", block: "start" });
-              } }
+            { label: "Ir a contacto", onClick: mascotGoToContact }
           ]
         );
       }
-      mascotRenderChips("");
+      if (mascotChips) mascotChips.innerHTML = "";
       if (mascotInput) mascotInput.value = "";
     }
 
