@@ -251,6 +251,22 @@ img { max-width: 100%; display: block; }
   gap: 3.5rem;
   align-items: center;
 }
+.hero__highlight {
+  position: relative;
+  z-index: 1;
+  margin-top: clamp(2rem, 4vw, 3rem);
+  padding: 1.05rem 1.5rem;
+  border-radius: var(--radius);
+  border: 1px solid rgba(34, 184, 207, 0.35);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.65)),
+    linear-gradient(135deg, rgba(34, 184, 207, 0.12), rgba(124, 108, 240, 0.12));
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+  font-size: clamp(0.98rem, 1.6vw, 1.08rem);
+  line-height: 1.65;
+  color: var(--blue-800);
+}
+.hero__highlight strong { color: var(--blue-900); }
 .hero__sub {
   font-size: 1.12rem;
   color: var(--slate-600);

@@ -85,8 +85,7 @@
 
   var form = document.getElementById("leadForm");
   var status = document.getElementById("formStatus");
-  var endpoint = form.getAttribute("action");
-  var notConfigured = !endpoint || endpoint.indexOf("your-id") !== -1;
+  var WHATSAPP_NUMBER = "56900000000";
 
   function setStatus(message, type) {
     status.textContent = message;
@@ -120,43 +119,18 @@
       return;
     }
 
-    if (notConfigured) {
-      console.warn(
-        "[PramTech] Formulario sin configurar: reemplaza el action del <form> por tu endpoint de Formspree (https://formspree.io/f/XXXX)."
-      );
-      setStatus("¡Gracias! El formulario aún no está conectado. Muy pronto podrás enviar tus datos.", "success");
-      form.reset();
-      return;
+    function fieldValue(name) {
+      var el = form.querySelector('[name="' + name + '"]');
+      return el ? el.value.trim() : "";
     }
 
-    var button = form.querySelector('button[type="submit"]');
-    var originalText = button.textContent;
-    button.disabled = true;
-    button.textContent = "Enviando...";
-    setStatus("", null);
+    var lines = ["Hola PramTech 👋", "Soy de " + fieldValue("negocio") + "."];
+    if (fieldValue("telefono")) lines.push("Mi WhatsApp: " + fieldValue("telefono"));
+    if (fieldValue("descripcion")) lines.push("Necesito: " + fieldValue("descripcion"));
 
-    fetch(endpoint, {
-      method: "POST",
-      body: new FormData(form),
-      headers: { Accept: "application/json" }
-    })
-      .then(function (response) {
-        if (response.ok) {
-          setStatus("¡Listo! Te contactaremos muy pronto para tu diagnóstico gratuito.", "success");
-          form.reset();
-        } else {
-          return response.json().then(function (data) {
-            throw new Error((data && data.error) || "Error del servidor");
-          });
-        }
-      })
-      .catch(function () {
-        setStatus("No pudimos enviar el formulario. Escríbenos a hola@pramtech.com.", "error");
-      })
-      .finally(function () {
-        button.disabled = false;
-        button.textContent = originalText;
-      });
+    var url = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(lines.join("\n"));
+    window.open(url, "_blank", "noopener");
+    setStatus("Abriendo WhatsApp…", "success");
   });
 
   /* =====================================================
