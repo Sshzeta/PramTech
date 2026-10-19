@@ -86,8 +86,8 @@ img { max-width: 100%; display: block; }
   font-weight: 600;
   letter-spacing: 0.09em;
   text-transform: uppercase;
-  color: var(--blue-700);
-  background: rgba(34, 184, 207, 0.12);
+  color: #eaf7fb;
+  background: linear-gradient(180deg, var(--blue-800), var(--blue-900));
   padding: 0.35rem 0.8rem;
   border-radius: 999px;
   margin-bottom: 1rem;
