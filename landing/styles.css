@@ -33,7 +33,6 @@ html { scroll-behavior: smooth; scroll-padding-top: var(--header-total); }
 
 html, body {
   width: 100%;
-  overflow-x: clip;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -43,9 +42,13 @@ body {
   color: var(--slate-800);
   background: var(--bg);
   line-height: 1.65;
-  padding-top: var(--header-total);
+  overflow-x: clip;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+main {
+  padding-top: var(--header-total);
 }
 
 h1, h2, h3 {
