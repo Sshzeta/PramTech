@@ -540,6 +540,116 @@ img { max-width: 100%; display: block; }
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2322b8cf' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 13 4 4L19 7'/%3E%3C/svg%3E") center/contain no-repeat;
 }
 
+/* --- Planes y precios --- */
+.pricing {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.4rem;
+  align-items: stretch;
+}
+.price-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--slate-200);
+  border-radius: var(--radius);
+  padding: 1.8rem 1.6rem;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+.price-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(34, 184, 207, 0.55);
+}
+.price-card__head { margin-bottom: 1.2rem; }
+.price-card__title {
+  font-size: 1.08rem;
+  margin: 0 0 0.5rem;
+  color: var(--blue-900);
+}
+.price-card__desc {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--slate-600);
+}
+.price-card__body {
+  margin-top: auto;
+  padding-top: 1.2rem;
+  border-top: 1px dashed var(--slate-200);
+}
+.price-card__row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin-bottom: 0.9rem;
+}
+.price-card__label {
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--slate-400);
+}
+.price-card__setup {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--blue-800);
+}
+.price-card__month {
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--blue-900);
+}
+.price-card__setup em,
+.price-card__month em {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.78rem;
+  color: var(--slate-400);
+}
+.price-card__note {
+  margin: 0 0 1.2rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--cyan-500);
+}
+.price-card__cta { margin-top: auto; }
+.price-card--featured {
+  border-color: var(--cyan-500);
+  box-shadow: 0 0 0 3px rgba(34, 184, 207, 0.22), var(--shadow-lg);
+}
+.price-card--featured:hover {
+  box-shadow: 0 0 0 3px rgba(34, 184, 207, 0.32), var(--shadow-lg);
+}
+.price-card__badge {
+  position: absolute;
+  top: -0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  background: linear-gradient(135deg, var(--cyan-500), var(--violet-500));
+  padding: 0.28rem 0.85rem;
+  border-radius: 999px;
+  white-space: nowrap;
+  box-shadow: var(--shadow-sm);
+}
+.pricing__legal {
+  max-width: 760px;
+  margin: clamp(2rem, 4vw, 2.8rem) auto 0;
+  font-size: 0.78rem;
+  line-height: 1.7;
+  color: var(--slate-400);
+  text-align: center;
+}
+
 .steps {
   list-style: none;
   padding: 0;
@@ -1038,6 +1148,7 @@ img { max-width: 100%; display: block; }
   .grid--3 { grid-template-columns: 1fr; }
   .about { grid-template-columns: 1fr; gap: 2rem; }
   .team__grid { grid-template-columns: repeat(2, 1fr); }
+  .pricing { grid-template-columns: repeat(2, 1fr); }
   .contact { grid-template-columns: 1fr; gap: 2rem; }
   .footer__inner { grid-template-columns: 1fr 1fr; }
 }
@@ -1084,6 +1195,7 @@ img { max-width: 100%; display: block; }
   .form__row { grid-template-columns: 1fr; }
   .stats { grid-template-columns: 1fr; }
   .team__grid { grid-template-columns: 1fr; }
+  .pricing { grid-template-columns: 1fr; }
   .agents__grid { grid-template-columns: 1fr; padding-top: 0; max-width: none; }
   .agents__grid::before,
   .agents__grid::after,
