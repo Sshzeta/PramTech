@@ -142,7 +142,7 @@ img { max-width: 100%; display: block; }
 
 .nav {
   position: sticky;
-  top: 0;
+  top: 2.1rem;
   z-index: 100;
   background: rgba(248, 250, 252, 0.72);
   backdrop-filter: blur(12px);
@@ -641,7 +641,7 @@ img { max-width: 100%; display: block; }
   white-space: nowrap;
   box-shadow: var(--shadow-sm);
 }
-.pricing__legal {
+  .pricing__legal {
   max-width: 760px;
   margin: clamp(2rem, 4vw, 2.8rem) auto 0;
   font-size: 0.78rem;
@@ -649,6 +649,52 @@ img { max-width: 100%; display: block; }
   color: var(--slate-400);
   text-align: center;
 }
+
+/* --- Announcement Bar --- */
+.announcement-bar {  position: fixed;  top: 0;  left: 0;  right: 0;  z-index: 120;  width: 100%;  overflow: hidden;  background: var(--cyan-500);  color: var(--blue-900);  border-bottom: 1px solid rgba(18, 41, 77, 0.15);  font-size: 0.9rem;  line-height: 1; }
+
+.nav {
+  position: sticky;
+  top: 2.1rem;
+  z-index: 100;
+  background: rgba(248, 250, 252, 0.72);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid transparent;
+}
+
+.announcement-bar__track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: announcement-marquee 28s linear infinite;
+  will-change: transform;
+}
+
+.announcement-bar__text {
+  display: inline-block;
+  white-space: nowrap;
+  padding: 0.5rem 0;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.announcement-bar:hover .announcement-bar__track {
+  animation-play-state: paused;
+}
+
+@keyframes announcement-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (max-width: 720px) {
+  .announcement-bar { font-size: 0.82rem; }
+  .announcement-bar__text { padding: 0.42rem 0; }
+  .announcement-bar__track { animation-duration: 22s; }
+  .nav { top: 2.0rem; }
+  .nav__links { top: calc(74px + 2.0rem); }
+}
+
 
 .steps {
   list-style: none;
@@ -1173,6 +1219,7 @@ img { max-width: 100%; display: block; }
   .nav__links {
     position: fixed;
     inset: 74px 0 auto 0;
+    top: calc(74px + 2.1rem);
     flex-direction: column;
     align-items: stretch;
     gap: 0.3rem;
@@ -1947,3 +1994,5 @@ body.is-locked { overflow: hidden; }
   .mascot__msg,
   .mascot__panel { animation: none !important; }
 }
+
+
