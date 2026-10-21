@@ -1246,9 +1246,15 @@ img { max-width: 100%; display: block; }
     border-bottom: 1px solid var(--slate-200);
     box-shadow: var(--shadow-md);
     transform: translateY(-120%);
-    transition: transform 0.35s var(--ease);
+    visibility: hidden;
+    pointer-events: none;
+    transition: transform 0.35s var(--ease), visibility 0.35s var(--ease);
   }
-  .nav__links.is-open { transform: translateY(0); }
+  .nav__links.is-open {
+    transform: translateY(0);
+    visibility: visible;
+    pointer-events: auto;
+  }
   .nav__links a { padding: 0.7rem 0.3rem; border-radius: 8px; }
   .nav__links a:not(.btn):hover { background: var(--bg); }
   .nav__cta { margin-top: 0.5rem; justify-content: center; }
