@@ -20,39 +20,41 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="styles.css?v=20261020-6" />
+  <link rel="stylesheet" href="styles.css?v=20261020-7" />
 </head>
 <body>
   <a class="skip-link" href="#inicio">Saltar al contenido</a>
 
-  <div class="announcement-bar" id="announcementBar" role="marquee" aria-label="Próximamente PramTech">
-    <div class="announcement-bar__track">
-      <span class="announcement-bar__text">🚀 ¡Próximamente! En PramTech estamos afinando los últimos detalles para nuestro lanzamiento oficial. ¡Grandes soluciones tecnológicas están en camino! • </span>
-      <span class="announcement-bar__text" aria-hidden="true">🚀 ¡Próximamente! En PramTech estamos afinando los últimos detalles para nuestro lanzamiento oficial. ¡Grandes soluciones tecnológicas están en camino! • </span>
+  <div class="site-header" id="siteHeader">
+    <div class="announcement-bar" id="announcementBar" role="marquee" aria-label="Próximamente PramTech">
+      <div class="announcement-bar__track">
+        <span class="announcement-bar__text">🚀 ¡Próximamente! En PramTech estamos afinando los últimos detalles para nuestro lanzamiento oficial. ¡Grandes soluciones tecnológicas están en camino! • </span>
+        <span class="announcement-bar__text" aria-hidden="true">🚀 ¡Próximamente! En PramTech estamos afinando los últimos detalles para nuestro lanzamiento oficial. ¡Grandes soluciones tecnológicas están en camino! • </span>
+      </div>
     </div>
+
+    <header class="nav" id="nav">
+      <div class="container nav__inner">
+        <a class="brand" href="#inicio" aria-label="PramTech inicio" onclick="if(window.location.hash === '#inicio' || window.location.hash === ''){ event.preventDefault(); window.scrollTo({top:0, behavior:'auto'}); }">
+          <img src="assets/logo.svg" alt="" class="brand__mark" width="34" height="34" />
+          <span class="brand__name">Pram<span>Tech</span></span>
+        </a>
+
+        <nav class="nav__links" id="navLinks" aria-label="Navegación principal">
+          <a href="#resolvemos">Qué resolvemos</a>
+          <a href="#soluciones">Soluciones</a>
+          <a href="#asesoria">Asesoría</a>
+          <a href="#precios">Precios</a>
+          <a href="#nosotros">Nosotros</a>
+          <a class="btn btn--primary btn--sm nav__cta" href="#contacto">Quiero mi diagnóstico gratis</a>
+        </nav>
+
+        <button class="nav__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
   </div>
-
-  <header class="nav" id="nav">
-    <div class="container nav__inner">
-      <a class="brand" href="#inicio" aria-label="PramTech inicio" onclick="if(window.location.hash === '#inicio' || window.location.hash === ''){ event.preventDefault(); window.scrollTo({top:0, behavior:'auto'}); }">
-        <img src="assets/logo.svg" alt="" class="brand__mark" width="34" height="34" />
-        <span class="brand__name">Pram<span>Tech</span></span>
-      </a>
-
-      <nav class="nav__links" id="navLinks" aria-label="Navegación principal">
-        <a href="#resolvemos">Qué resolvemos</a>
-        <a href="#soluciones">Soluciones</a>
-        <a href="#asesoria">Asesoría</a>
-        <a href="#precios">Precios</a>
-        <a href="#nosotros">Nosotros</a>
-        <a class="btn btn--primary btn--sm nav__cta" href="#contacto">Quiero mi diagnóstico gratis</a>
-      </nav>
-
-      <button class="nav__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </header>
 
   <main id="inicio">
     <section class="hero">
