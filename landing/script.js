@@ -85,7 +85,9 @@
 
   var form = document.getElementById("leadForm");
   var status = document.getElementById("formStatus");
-  var WHATSAPP_NUMBER = "56900000000";
+  var WHATSAPP_NUMBER = "56961864903";
+  var WHATSAPP_URL = "https://wa.me/" + WHATSAPP_NUMBER;
+  var REQUIRED_FIELDS = ["negocio", "telefono"];
 
   function setStatus(message, type) {
     status.textContent = message;
@@ -97,6 +99,13 @@
     var valid = true;
     form.querySelectorAll("input[required], select[required]").forEach(function (field) {
       var ok = field.checkValidity() && field.value.trim() !== "";
+      field.classList.toggle("is-invalid", !ok);
+      if (!ok) valid = false;
+    });
+    REQUIRED_FIELDS.forEach(function (name) {
+      var field = form.querySelector('[name="' + name + '"]');
+      if (!field) return;
+      var ok = field.value.trim() !== "";
       field.classList.toggle("is-invalid", !ok);
       if (!ok) valid = false;
     });
@@ -115,7 +124,9 @@
     event.preventDefault();
 
     if (!validate()) {
-      setStatus("Revisa los campos marcados para continuar.", "error");
+      setStatus("Completa el nombre del negocio y tu WhatsApp para continuar.", "error");
+      var firstInvalid = form.querySelector(".is-invalid");
+      if (firstInvalid) firstInvalid.focus();
       return;
     }
 
@@ -124,11 +135,14 @@
       return el ? el.value.trim() : "";
     }
 
-    var lines = ["Hola PramTech 👋", "Soy de " + fieldValue("negocio") + "."];
-    if (fieldValue("telefono")) lines.push("Mi WhatsApp: " + fieldValue("telefono"));
-    if (fieldValue("descripcion")) lines.push("Necesito: " + fieldValue("descripcion"));
+    var message = [
+      "Hola Pramtech, me gustaría agendar un diagnóstico gratuito.",
+      "- Nombre de mi negocio: " + fieldValue("negocio"),
+      "- Mi WhatsApp de contacto: " + fieldValue("telefono"),
+      "- Lo que necesito: " + (fieldValue("descripcion") || "Prefiero conversarlo por WhatsApp")
+    ].join("\n");
 
-    var url = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(lines.join("\n"));
+    var url = WHATSAPP_URL + "?text=" + encodeURIComponent(message);
     window.open(url, "_blank", "noopener");
     setStatus("Abriendo WhatsApp…", "success");
   });
