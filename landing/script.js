@@ -88,6 +88,40 @@
   var WHATSAPP_NUMBER = "56961864903";
   var WHATSAPP_URL = "https://wa.me/" + WHATSAPP_NUMBER;
   var REQUIRED_FIELDS = ["negocio", "telefono"];
+  var PHONE_FIELD = "telefono";
+  var PHONE_PREFIX = "+56";
+  var phoneInput = form.querySelector('[name="' + PHONE_FIELD + '"]');
+
+  // Numero nacional sin codigo de pais ni formato.
+  function phoneNumber(value) {
+    var digits = String(value == null ? "" : value).replace(/\D/g, "");
+    if (digits.indexOf("56") === 0) digits = digits.slice(2);
+    return digits;
+  }
+
+  // El campo siempre muestra el prefijo +56; el usuario solo escribe su numero.
+  function normalizePhone() {
+    if (!phoneInput) return;
+    var value = phoneInput.value;
+    var rest;
+    var match = value.match(/\+\d{2}\s*(.*)/);
+    if (match) {
+      rest = match[1];
+    } else if (value.charAt(0) === "+") {
+      var space = value.indexOf(" ");
+      rest = space >= 0 ? value.slice(space + 1) : value.slice(1);
+    } else {
+      rest = value;
+    }
+    var digits = phoneNumber(rest);
+    var next = PHONE_PREFIX + (digits ? " " + digits : " ");
+    if (next !== value) phoneInput.value = next;
+  }
+
+  function hasContent(field) {
+    if (field.name === PHONE_FIELD) return phoneNumber(field.value).length > 0;
+    return field.value.trim() !== "";
+  }
 
   function setStatus(message, type) {
     status.textContent = message;
@@ -98,23 +132,29 @@
   function validate() {
     var valid = true;
     form.querySelectorAll("input[required], select[required]").forEach(function (field) {
-      var ok = field.checkValidity() && field.value.trim() !== "";
+      var ok = field.checkValidity() && hasContent(field);
       field.classList.toggle("is-invalid", !ok);
       if (!ok) valid = false;
     });
     REQUIRED_FIELDS.forEach(function (name) {
       var field = form.querySelector('[name="' + name + '"]');
       if (!field) return;
-      var ok = field.value.trim() !== "";
+      var ok = field.checkValidity() && hasContent(field);
       field.classList.toggle("is-invalid", !ok);
       if (!ok) valid = false;
     });
     return valid;
   }
 
+  if (phoneInput) {
+    phoneInput.addEventListener("input", normalizePhone);
+    phoneInput.addEventListener("blur", normalizePhone);
+    normalizePhone();
+  }
+
   form.querySelectorAll("input, select").forEach(function (field) {
     field.addEventListener("input", function () {
-      if (field.classList.contains("is-invalid") && field.checkValidity()) {
+      if (field.classList.contains("is-invalid") && field.checkValidity() && hasContent(field)) {
         field.classList.remove("is-invalid");
       }
     });
