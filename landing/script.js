@@ -144,6 +144,10 @@
 
     var url = WHATSAPP_URL + "?text=" + encodeURIComponent(message);
     window.open(url, "_blank", "noopener");
+    form.reset();
+    form.querySelectorAll(".is-invalid").forEach(function (field) {
+      field.classList.remove("is-invalid");
+    });
     setStatus("Abriendo WhatsApp…", "success");
   });
 
